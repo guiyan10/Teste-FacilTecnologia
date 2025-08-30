@@ -209,10 +209,28 @@ try {
     echo "</tbody>\n";
     echo "</table>\n";
     
-    echo "<p><strong>Total de contratos encontrados:</strong> " . count($resultados) . "</p>\n";
+    echo "<div class='stats'>\n";
+    echo "<div class='stats-item'>\n";
+    echo "<div class='stats-value'>" . count($resultados) . "</div>\n";
+    echo "<div class='stats-label'>📊 Total de Contratos</div>\n";
+    echo "</div>\n";
+    echo "<div class='stats-item'>\n";
+    echo "<div class='stats-value'>R$ " . number_format($totalValor, 0, ',', '.') . "</div>\n";
+    echo "<div class='stats-label'>💰 Valor Total</div>\n";
+    echo "</div>\n";
+    echo "<div class='stats-item'>\n";
+    echo "<div class='stats-value'>R$ " . number_format($totalValor / max(count($resultados), 1), 0, ',', '.') . "</div>\n";
+    echo "<div class='stats-label'>📈 Valor Médio</div>\n";
+    echo "</div>\n";
+    echo "</div>\n";
+    echo "</div>\n";
+    echo "</div>\n";
     
 } catch (PDOException $e) {
-    echo "Erro na conexão ou consulta: " . $e->getMessage();
+    echo "<div class='container'><div class='content'>";
+    echo "<h2 style='color: #e74c3c;'>⚠️ Erro na Conexão</h2>";
+    echo "<p>" . $e->getMessage() . "</p>";
+    echo "</div></div>";
 }
 
 // Versão alternativa para saída em JSON (descomente se necessário)
